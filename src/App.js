@@ -1,23 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import axios from 'axios'
 
 function App() {
+  const encodedParams = new URLSearchParams();
+  encodedParams.append("q", "English is hard, but detectably so");
+  
+
+
+
+  const handlesubmit = (e) => {
+    axios.post('https://google-translate1.p.rapidapi.com/language/translate/v2/detect',
+     'data: encodedParams',
+     {
+      headers: {
+
+        'content-type': 'application/x-www-form-urlencoded',
+        'X-RapidAPI-Key': 'e2d341dda3mshd2e862573ecfccbp171fe8jsn8c06ebba684c',
+        'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+      },
+
+
+    }
+     
+     )
+
+
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <button onClick={handlesubmit}>Post request</button>
+
+
     </div>
   );
 }
